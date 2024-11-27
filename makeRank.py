@@ -155,10 +155,10 @@ class Graph:
         return now
     def printRank(self,n):
         vertices_sorted = sorted(self.vertices, key=lambda k: self.vertices[k].rank_point,reverse=True)
-        # for i in range(n):
-        #     bi_word = vertices_sorted[i]
-            # rp = self.
-            # print()
+        for i in range(n):
+            bi_word = vertices_sorted[i]
+            rp = self.vertices[bi_word].rank_point
+            print(f"{bi_word} : {rp}")
         return vertices_sorted
 #0.005974815658156412
 #0.005974815658156412
@@ -226,7 +226,8 @@ CleanData_to_graph(data,g)
 #     # print(i)
 
 print(max(g.ranking(100)))
-print(g.printRank(1)[:10])
+# print(g.printRank(1)[:10])
+g.printRank(10)
 
 
 
