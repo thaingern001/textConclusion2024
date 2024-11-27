@@ -38,62 +38,6 @@ class Node_bigram:
                 return
         self.next[next.bigram_word] = [next,1]
 
-# class Graph:
-#     def __init__(self):
-#         self.vertices = {} #key = bigram_word,value = Node_bigram
-#         self.edges = {} 
-#     def add_node(self,node):
-#         for i in self.vertices:
-#             if node.bigram_word == i:
-#                 # print("***************foud duplicate")
-#                 return
-#         node.index = len(self.vertices)
-#         self.vertices[node.bigram_word] = node
-#     def ranking(self,n_time):
-#         alpha = 0.85
-
-#         vertices_num = len(self.vertices)
-#         #give RP from Rank_Point
-#         start_RP = [(1-alpha)/vertices_num]*vertices_num
-#         # next_RP = [0]*vertices_num
-#         nodes = list(self.vertices.values()) #==> [node_bigram,w]
-#         # print(nodes[0].next)
-#         def calculate(start_RP,nodes):  
-#             next_RP = [(1-alpha)/vertices_num]*vertices_num
-#             for i in range(len(nodes)):
-#                 # print("node2 = ",nodes[2])
-#                 # return
-#                 node = nodes[i]
-#                 # w = nodes[i][1] #fequency
-#                 rp = start_RP[i] #rank point of this node
-#                 if node.n_edge_next == 0 :
-#                     rp_per_adge = rp/vertices_num
-#                     for j in range(len(start_RP)):
-#                         next_RP[j]+=rp_per_adge
-#                     continue
-#                 rp_per_adge = rp/node.n_edge_next 
-#                 for next in node.next.values():
-#                     # print(next)
-#                     # print(next[0])
-#                     # print(next[1])
-#                     next_node = next[0]
-#                     w = next[1]
-#                     # print(rp_per_adge*w)
-#                     next_RP[next_node.index] += rp_per_adge*w*alpha
-#                     # return
-#             return next_RP
-#         now = start_RP
-#         for i in range(n_time):
-#             now = calculate(now,nodes)
-#             print("test:",now[:3])
-#             print("sum = " ,sum(now))
-#             print(f"n = {i+1} complete")
-#         # now = calculate(start_RP,nodes)
-#         print(now[:3])
-#         print("len = ",len(now))
-#         print("max = " ,max(now))
-#         print("sum = " ,sum(now))
-
 
 class Graph:
     def __init__(self):
@@ -160,10 +104,6 @@ class Graph:
             rp = self.vertices[bi_word].rank_point
             print(f"{bi_word} : {rp}")
         return vertices_sorted
-#0.005974815658156412
-#0.005974815658156412
-#0.005974815658156412
-
 
         
 def add_text_to_vertice_of_graph(g,text):
@@ -217,34 +157,9 @@ CleanData_to_graph(data,g)
 
 #---------------------------------------- finish make graph G ----------------------------
 
-# num_of_verices = len(g.vertices)
-
-# for i in g.vertices:
-#     w = g.vertices[i]
-#     # print(g.vertices[i].bigram_word,)
-#     print(w.bigram_word,w.prev)
-#     # print(i)
 
 print(max(g.ranking(100)))
 # print(g.printRank(1)[:10])
 g.printRank(10)
 
-
-
-
-
-#----------------------------------------more about fist word of conclusion----------------------------
 print(len(g.vertices))
-# def find_first_words(g):
-#     n = 0
-#     ans = []
-#     for i in g.vertices:
-#         if g.vertices[i].n_edge_prev >= n:
-#             if g.vertices[i].n_edge_prev == n:
-#                 ans.append(i)
-#             ans = [i]
-#             n = g.vertices[i].n_edge_prev
-#     return ans
-        
-# ans = find_first_words(g)
-# print(ans)
